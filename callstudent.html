@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.button {
+				border-radius: 10px;
+				position: absolute;
+				padding: 10px;
+				font-weight: bolder;
+				text-align: center;
+				height: 20px;
+				width: 120px;
+				background-color: #ff8c69;
+			}
+			
+			.result {
+				border-radius: 10px;
+				position: absolute;
+				padding: 10px;
+				font-weight: bolder;
+				text-align: center;
+				height: 20px;
+				width: 120px;
+				background-color: #00c5cd;
+			}
+			
+			.button:hover {
+				border-radius: 10px;
+				position: absolute;
+				padding: 10px;
+				font-weight: bolder;
+				text-align: center;
+				height: 20px;
+				width: 120px;
+				background-color: #ffff00;
+			}
+			/*定义学生名字的样式*/
+			
+			.stu {
+				border: 1px solid;
+				width: 78px;
+				height: 23px;
+				background: #ff3030;
+				padding-top: 5px;
+				text-align: center;
+				color: #4f4f4f;
+			}
+		</style>
+		<script>
+			var arr = ["宋赣明",
+				"胡涛",
+				"方旭",
+				"张硕",
+				"祝隆鹏",
+				"胡德清",
+				"华少骏",
+				"章辉勇",
+				"黄永彬",
+				"陈军",
+				"芮道云",
+				"殷雄飞",
+				"程龙",
+				"李华峰",
+				"吕宝全",
+				"韦奇",
+				"赵俊晓",
+				"陆国元",
+				"吴梓涵",
+				"黄伟",
+				"朱晓祥",
+				"梁新超",
+				"赵凯",
+				"徐冬冬",
+				"曾骥",
+				"张连宇",
+				"袁浩",
+				"薛志强",
+				"陈筛成",
+				"张帝",
+				"刘伟",
+				"周玉恒",
+				"周鑫",
+				"傅祖升",
+				"赵佳辉",
+				"倪永成",
+				"宋宇航",
+				"陈礼杰",
+				"张凯",
+				"刘重阳",
+				"梁庭威",
+				"苏杨",
+				"俞金宝",
+				"孙遵胜",
+				"万亿",
+				"江元",
+				"金永杰",
+				"高阳",
+				"贾丕富",
+				"徐文伟",
+				"李文飞",
+				"王亮",
+				"刘明杭",
+			];
+			//一行排列10个
+			var lineCount = 10;
+			for(var i = 0; i < arr.length / lineCount; i++) {
+				for(var j = 0; j < lineCount; j++) {
+					if(i * lineCount + j < arr.length) {
+						//arr[i*lineCount+j];
+						document.write("<div id='student" + (i * lineCount + j) + "' class='stu' style='position:absolute;left:" + (j * 82 + 100) + "px;top:" + (i * 32 + 100) + "px;'>" + arr[i * lineCount + j] + "</div>");
+					}
+				}
+			}
+
+			var isRun = true;
+			var afterRandom = -1;
+			//动的逻辑
+			function fun() {
+				if(isRun) {
+					//每一次都要随机一个人
+					if(afterRandom != -1) {
+						document.getElementById("student" + afterRandom).style.background = "#ff3030";
+
+					}
+
+					var random = Math.floor(Math.random() * arr.length);
+					document.getElementById("student" + random).style.background = "#00C5CD";
+					document.getElementById("result").innerHTML = document.getElementById("student" + random).innerHTML;
+
+					afterRandom = random;
+					setTimeout("fun()", 100);
+				}
+			}
+
+			function reset() {
+				isRun = true;
+			}
+
+			function stop() {
+				isRun = false;
+				setTimeout("reset();", 200);
+			}
+		</script>
+	</head>
+
+	<body bgcolor="#ff8247">
+		<div align="center">
+			<h1>JavaEE1801班级专用提问系统</h1>
+		</div>
+
+		<div class="button" style="left:500px;top:400px;" onclick="fun()">开始</div>
+		<div class="button" style="left:680px;top:400px;" onclick="stop()">停止</div>
+		<div class="result" id="result" style="left:1000px;top:100px">欢迎使用</div>
+	</body>
+
+</html>
